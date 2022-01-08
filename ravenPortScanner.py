@@ -3,6 +3,8 @@ import re
 import threading
 import argparse
 import time
+import os
+import beautifultable
 
 class PortScan:
 
@@ -56,11 +58,18 @@ class PortScan:
             if port%self.thread==0 or port==self.portList[-1]:
                 t.join()
 
-        time.sleep(1)
-        print("\n")
-        for openPorts in self.openPorts:
-            print(f"OPEN: {openPorts}")
+        if os.name == 'nt':
+            os.system("cls")
+        else:
+            os.system("clear")
 
+        table = beautifultable.BeautifulTable()
+        table.columns.header = ["PORT", "STATE"]
+
+        for openPort in self.openPorts:
+            table.rows.append([openPort, "OPEN"])
+
+        print(table)
 
 
 if __name__ == '__main__':
