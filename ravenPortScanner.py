@@ -93,7 +93,7 @@ if __name__ == '__main__':
     parser.add_argument(
         "-t", "--thread",
         type=int,
-        help="SET NO. OF THREADS"
+        help="SET NO. OF THREADS [DEFAULT: 65535]"
     )
 
     parser.add_argument(
@@ -125,6 +125,5 @@ if __name__ == '__main__':
     if args.port:
         portlist = list(map(int, args.port.split(',')))
         portScanner.setPortList(portlist)
-
 
     portScanner.main()
