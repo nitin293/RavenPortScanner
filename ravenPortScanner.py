@@ -3,17 +3,17 @@ import re
 import threading
 import argparse
 import time
-import os
-import beautifultable
+
 
 def banner():
     ban = '''
-██████   █████  ██    ██ ███████ ███    ██ ██████   ██████  ██████  ████████ ███████  ██████  █████  ███    ██ ███    ██ ███████ ██████  
-██   ██ ██   ██ ██    ██ ██      ████   ██ ██   ██ ██    ██ ██   ██    ██    ██      ██      ██   ██ ████   ██ ████   ██ ██      ██   ██ 
-██████  ███████ ██    ██ █████   ██ ██  ██ ██████  ██    ██ ██████     ██    ███████ ██      ███████ ██ ██  ██ ██ ██  ██ █████   ██████  
-██   ██ ██   ██  ██  ██  ██      ██  ██ ██ ██      ██    ██ ██   ██    ██         ██ ██      ██   ██ ██  ██ ██ ██  ██ ██ ██      ██   ██ 
-██   ██ ██   ██   ████   ███████ ██   ████ ██       ██████  ██   ██    ██    ███████  ██████ ██   ██ ██   ████ ██   ████ ███████ ██   ██ 
-
+ ____  ____  _     ______     ____  ____  ____  _____  ____  ____  ____  _     _     _________ 
+/  __\/  _ \/ \ |\/  __/ \  //  __\/  _ \/  __\/__ __\/ ___\/   _\/  _ \/ \  // \  //  __/  __\\
+|  \/|| / \|| | //|  \ | |\ ||  \/|| / \||  \/|  / \  |    \|  /  | / \|| |\ || |\ ||  \ |  \/|
+|    /| |-||| \// |  /_| | \||  __/| \_/||    /  | |  \___ ||  \_ | |-||| | \|| | \||  /_|    /
+\_/\_\\\\_/ \|\__/  \____\_/  \\\\_/   \____/\_/\_\  \_/  \____/\____/\_/ \|\_/  \\\\_/  \\\\____\_/\_\\
+                                                                                               
+                                                                                                                               
 Author: Nitin Choudhury
 Version: 0.0.3                                                                                                                                                                                                                                                                          
     '''
@@ -72,18 +72,10 @@ class PortScan:
             if port%self.thread==0 or port==self.portList[-1]:
                 t.join()
 
-        if os.name == 'nt':
-            os.system("cls")
-        else:
-            os.system("clear")
-
-        table = beautifultable.BeautifulTable()
-        table.columns.header = ["PORT", "STATE"]
-
+        print("\n\nPORTS\tSTATE")
         for openPort in self.openPorts:
-            table.rows.append([openPort, "OPEN"])
+            print(openPort, "\tOPEN")
 
-        print(table)
 
 
 if __name__ == '__main__':
